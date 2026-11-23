@@ -1,6 +1,16 @@
 <x-layout title="Home">
-    
-     <x-card class="max-w-400">
-        <h1>{{ $message}} {{ $person }}</h1>
-     </x-card>
+   <!-- @foreach ($tasks as $task )
+      <li>{{ $task }}</li>
+   @endforeach
+
+   @unless(count($tasks))
+      <h1>there is no tasks now</h1>
+   @endunless -->
+
+
+   @forelse($tasks as $task)
+      <li>{{ $task }}</li>
+   @empty
+      <h1>there are no tasks now</h1>
+   @endforelse
 </x-layout>
