@@ -3,13 +3,26 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home', [
-        'tasks' =>[
-            'laravel course',
-            'play some games',
-            'go to gym'
-        ]
+    $ideas = session()->get('ideas',[]);
+    
+    return view('home',[
+        'ideas' => $ideas
     ]);
+    
 });
-Route::view('/test', 'test');
-Route::view("/contact", "contact");
+Route::post('/home', function () {
+    $idea = request('idea');
+    if($idea != ''){
+        session()->push('ideas', $idea);
+    }
+    
+
+    return redirect('/');
+});
+
+Route::get('/clear',function(){
+session()->put('ideas' , []);
+return view('home',[
+    'ideas' => session('ideas')
+]);
+});
