@@ -28,19 +28,19 @@
          <h2 class="text-base/7 font-semibold text-white">Your ideas</h2>
          <span
             class="rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-500/20">
-            {{ count($ideas) }}
+            {{ $ideas->count() }}
          </span>
       </div>
 
       <ul role="list" class="mt-4 space-y-3">
          @forelse($ideas as $idea)
-         @if ($idea == '')
+         @if ($idea -> description == '')
             @continue
          @endif
             <li
                class="flex items-start gap-x-3 rounded-lg bg-white/5 px-4 py-3 text-sm/6 text-gray-200 ring-1 ring-inset ring-white/10 transition hover:bg-white/10">
                <span class="mt-2 size-1.5 shrink-0 rounded-full bg-indigo-400"></span>
-               <span class="min-w-0 break-words">{{ $idea }}</span>
+               <span class="min-w-0 break-words">{{ $idea -> description }}</span>
             </li>
          @empty
             <li class="rounded-lg border border-dashed border-white/15 px-4 py-10 text-center">
